@@ -79,7 +79,7 @@ class ResponseHeadersListener implements EventSubscriberInterface
         }
 
         $context = [
-            'mainRequest' => $event->isMainRequest(),
+            'isMainRequest' => $event->isMainRequest(),
             'request' => $event->getRequest(),
             'response' => $event->getResponse(),
         ];
