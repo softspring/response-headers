@@ -182,6 +182,42 @@ parameters:
             replace: false
 ```
 
+## Common security headers
+
+This is an example witch defines common security headers:
+
+```yaml
+# config/packages/response_headers.yaml
+parameters:
+    response_headers_global_conditions:
+        - 'isMainRequest'
+    response_headers:
+        X-XSS-Protection:
+            - "1"
+            - "mode=block"
+        X-Frame-Options: "SAMEORIGIN"
+        X-Content-Type-Options: "nosniff"
+        Strict-Transport-Security:
+            - "max-age=31536000"
+            - "includeSubDomains"
+        Referrer-Policy: "same-origin"
+        Feature-Policy:
+            - "geolocation 'self'"
+            - "vibrate 'none'"
+            # ... include every feature the application uses.
+        Content-Security-Policy:
+            - "default-src 'none'"
+            - "img-src 'self'"
+            - "font-src 'self'"
+            - "manifest-src 'self'"
+            - "frame-src 'self'"
+            - "script-src 'self' 'unsafe-inline'"
+            - "style-src 'self' 'unsafe-inline'"
+            - "connect-src 'self'"
+```
+
+Check Content-Security-Policy to include every base urls with services you use. Also try to avoid *unsafe-inline* configuration, this is up to your project. 
+
 ## License
 
 This bundle is under the MIT license. See the complete license in the bundle LICENSE file.
