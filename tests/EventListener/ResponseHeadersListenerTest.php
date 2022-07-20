@@ -168,7 +168,7 @@ class ResponseHeadersListenerTest extends TestCase
         ];
 
         $globalConditions = [
-            'mainRequest',
+            'isMainRequest',
         ];
 
         $eventListener = new ResponseHeadersListener($headers, new ExpressionLanguage(), $globalConditions);
