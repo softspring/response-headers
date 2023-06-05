@@ -15,7 +15,7 @@ class ResponseHeadersListener implements EventSubscriberInterface
 
     protected array $globalConditions;
 
-    public function __construct(array $headers, ?ExpressionLanguage $expressionLanguage = null, array $globalConditions = [])
+    public function __construct(array $headers, ExpressionLanguage $expressionLanguage = null, array $globalConditions = [])
     {
         $this->headers = $headers;
         $this->expressionLanguage = $expressionLanguage;
