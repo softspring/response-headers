@@ -6,8 +6,8 @@ This component, made for Symfony, allows to set response headers defining them i
 [![Latest Unstable Version](https://poser.pugx.org/softspring/response-headers/v/unstable.svg)](https://packagist.org/packages/softspring/response-headers)
 [![License](https://poser.pugx.org/softspring/response-headers/license.svg)](https://packagist.org/packages/softspring/response-headers)
 [![Total Downloads](https://poser.pugx.org/softspring/response-headers/downloads)](https://packagist.org/packages/softspring/response-headers)
-[![Build status](https://github.com/softspring/response-headers/actions/workflows/php.yml/badge.svg?branch=5.1)](https://github.com/softspring/response-headers/actions/workflows/php.yml)
-![Coverage](https://raw.githubusercontent.com/softspring/response-headers/5.1/.github/badges/coverage.svg)
+[![Build status](https://github.com/softspring/response-headers/actions/workflows/php.yml/badge.svg?branch=5.2)](https://github.com/softspring/response-headers/actions/workflows/php.yml)
+![Coverage](https://raw.githubusercontent.com/softspring/response-headers/5.2/.github/badges/coverage.svg)
 
 ## Installation
 
