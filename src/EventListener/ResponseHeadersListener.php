@@ -2,6 +2,7 @@
 
 namespace Softspring\Component\ResponseHeaders\EventListener;
 
+use Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -68,11 +69,11 @@ class ResponseHeadersListener implements EventSubscriberInterface
 
         if (!$this->expressionLanguage) {
             if (!empty($this->globalConditions)) {
-                throw new \Exception('There are some global conditions witch needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.');
+                throw new Exception('There are some global conditions witch needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.');
             }
 
             if (!empty($headerConfig['condition'])) {
-                throw new \Exception(sprintf('The %s header rule needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.', $headerKey));
+                throw new Exception(sprintf('The %s header rule needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.', $headerKey));
             }
 
             return true;
