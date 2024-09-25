@@ -1,13 +1,14 @@
 # Response headers component
 
-This component, made for Symfony, allows to set response headers defining them in configuration.
-
-[![Latest Stable Version](https://poser.pugx.org/softspring/response-headers/v/stable.svg)](https://packagist.org/packages/softspring/response-headers)
-[![Latest Unstable Version](https://poser.pugx.org/softspring/response-headers/v/unstable.svg)](https://packagist.org/packages/softspring/response-headers)
-[![License](https://poser.pugx.org/softspring/response-headers/license.svg)](https://packagist.org/packages/softspring/response-headers)
-[![Total Downloads](https://poser.pugx.org/softspring/response-headers/downloads)](https://packagist.org/packages/softspring/response-headers)
-[![Build status](https://github.com/softspring/response-headers/actions/workflows/php.yml/badge.svg?branch=5.3)](https://github.com/softspring/response-headers/actions/workflows/php.yml)
+![Latest Stable](https://img.shields.io/packagist/v/softspring/response-headers?label=stable&style=flat-square)
+![Latest Unstable](https://img.shields.io/packagist/v/softspring/response-headers?label=unstable&style=flat-square&include_prereleases)
+![License](https://img.shields.io/packagist/l/softspring/response-headers?style=flat-square)
+![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/response-headers/php?style=flat-square)
+![Downloads](https://img.shields.io/packagist/dt/softspring/response-headers?style=flat-square)
+[![CI](https://img.shields.io/github/actions/workflow/status/softspring/response-headers/php.yml?branch=5.3&style=flat-square&label=CI)](https://github.com/softspring/response-headers/actions/workflows/php.yml)
 ![Coverage](https://raw.githubusercontent.com/softspring/response-headers/5.3/.github/badges/coverage.svg)
+
+This component, made for Symfony, allows to set response headers defining them in configuration.
 
 ## Installation
 
