@@ -2,7 +2,7 @@
     "name": "softspring/response-headers",
     "description": "This component provides response headers configuration for Symfony projects",
     "type": "library",
-    "license": "MIT",
+    "license": "AGPL-3.0",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
