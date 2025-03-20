@@ -222,4 +222,4 @@ Check Content-Security-Policy to include every base urls with services you use. 
 
 ## License
 
-This bundle is under the MIT license. See the complete license in the bundle LICENSE file.
+This package is free and released under the [AGPL-3.0 license](LICENSE).
