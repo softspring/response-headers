@@ -5,8 +5,8 @@
 ![License](https://img.shields.io/packagist/l/softspring/response-headers?style=flat-square)
 ![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/response-headers/php?style=flat-square)
 ![Downloads](https://img.shields.io/packagist/dt/softspring/response-headers?style=flat-square)
-[![CI](https://img.shields.io/github/actions/workflow/status/softspring/response-headers/ci.yml?branch=5.5&style=flat-square&label=CI)](https://github.com/softspring/response-headers/actions/workflows/ci.yml)
-![Coverage](https://raw.githubusercontent.com/softspring/response-headers/5.5/.github/badges/coverage.svg)
+[![CI](https://img.shields.io/github/actions/workflow/status/softspring/response-headers/ci.yml?branch=6.0&style=flat-square&label=CI)](https://github.com/softspring/response-headers/actions/workflows/ci.yml)
+![Coverage](https://raw.githubusercontent.com/softspring/response-headers/6.0/.github/badges/coverage.svg)
 
 This component, made for Symfony, allows to set response headers defining them in configuration.
 
