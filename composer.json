@@ -1,24 +1,24 @@
 {
     "name": "softspring/response-headers",
     "description": "This component provides response headers configuration for Symfony projects",
-    "type": "library",
     "license": "AGPL-3.0-or-later",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "type": "library",
     "require": {
         "php": ">=8.4",
-        "symfony/http-foundation": "^6.4|^7.4|^8.0",
-        "symfony/event-dispatcher": "^6.4|^7.4|^8.0"
+        "symfony/event-dispatcher": "^6.4 || ^7.4 || ^8.0",
+        "symfony/http-foundation": "^6.4 || ^7.4 || ^8.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.50",
-        "friendsofphp/php-cs-fixer": "^3.89",
+        "friendsofphp/php-cs-fixer": "^3.94",
         "phpstan/phpstan": "^2.1",
-        "phpunit/phpunit": "^9.5 || ^10.0",
-        "rector/rector": "^2.2",
-        "symfony/expression-language": "^6.4|^7.4|^8.0",
-        "symfony/http-kernel": "^6.4|^7.4|^8.0"
+        "phpunit/phpunit": "^12.5",
+        "rector/rector": "^2.3",
+        "symfony/expression-language": "^6.4 || ^7.4 || ^8.0",
+        "symfony/http-kernel": "^6.4 || ^7.4 || ^8.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Softspring\\Component\\ResponseHeaders\\": "src/"
@@ -30,18 +30,23 @@
         }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "ergebnis/composer-normalize": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-6.0": "6.0.x-dev"
         }
     },
     "scripts": {
         "fix": [
             "vendor/bin/rector process src tests",
-            "vendor/bin/php-cs-fixer fix --diff",
+            "vendor/bin/php-cs-fixer fix",
             "composer normalize"
         ],
-        "run-tests" : [
+        "run-tests": [
             "composer validate --strict --no-check-lock --ansi",
             "XDEBUG_MODE=coverage vendor/bin/phpunit",
             "vendor/bin/rector process src tests --dry-run",
