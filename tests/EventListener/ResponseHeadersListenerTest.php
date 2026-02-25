@@ -2,6 +2,7 @@
 
 namespace Softspring\Component\ResponseHeaders\Tests\EventListener;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use Softspring\Component\ResponseHeaders\EventListener\ResponseHeadersListener;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
@@ -28,7 +29,7 @@ class ResponseHeadersListenerTest extends TestCase
         ];
 
         $event = $this->createEvent();
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('value', $event->getResponse()->headers->get('x-test'));
@@ -44,7 +45,7 @@ class ResponseHeadersListenerTest extends TestCase
         ];
 
         $event = $this->createEvent();
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('value1; value2', $event->getResponse()->headers->get('x-test'));
@@ -59,7 +60,7 @@ class ResponseHeadersListenerTest extends TestCase
         ];
 
         $event = $this->createEvent();
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('value-is-string', $event->getResponse()->headers->get('x-test'));
@@ -74,7 +75,7 @@ class ResponseHeadersListenerTest extends TestCase
         ];
 
         $event = $this->createEvent();
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('value; is; array', $event->getResponse()->headers->get('x-test'));
@@ -90,7 +91,7 @@ class ResponseHeadersListenerTest extends TestCase
 
         $event = $this->createEvent();
         $event->getResponse()->headers->set('X-Test', 'initial-value');
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('override-value-as-default-behaviour', $event->getResponse()->headers->get('x-test'));
@@ -107,7 +108,7 @@ class ResponseHeadersListenerTest extends TestCase
 
         $event = $this->createEvent();
         $event->getResponse()->headers->set('X-Test', 'initial-value');
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('override-value-as-configured', $event->getResponse()->headers->get('x-test'));
@@ -124,7 +125,7 @@ class ResponseHeadersListenerTest extends TestCase
 
         $event = $this->createEvent();
         $event->getResponse()->headers->set('X-Test', 'initial-value');
-        $eventListener = new ResponseHeadersListener($headers, null);
+        $eventListener = new ResponseHeadersListener($headers);
         $eventListener->onKernelResponseAddHeaders($event);
 
         $this->assertEquals('initial-value', $event->getResponse()->headers->get('x-test'));
@@ -132,7 +133,7 @@ class ResponseHeadersListenerTest extends TestCase
 
     public function testMissingExpressionLanguageOnGlobal(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->expectExceptionMessage('There are some global conditions witch needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.');
 
         $headers = [
@@ -146,7 +147,7 @@ class ResponseHeadersListenerTest extends TestCase
 
     public function testMissingExpressionLanguageOnHeader(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->expectExceptionMessage('The X-Test header rule needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.');
 
         $headers = [

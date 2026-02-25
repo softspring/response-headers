@@ -67,8 +67,8 @@ class ResponseHeadersListener implements EventSubscriberInterface
     {
         $headerConfig = $this->headers[$headerKey];
 
-        if (!$this->expressionLanguage) {
-            if (!empty($this->globalConditions)) {
+        if (!$this->expressionLanguage instanceof ExpressionLanguage) {
+            if ([] !== $this->globalConditions) {
                 throw new Exception('There are some global conditions witch needs symfony/expression-language component to be evaluated. If you already installed the component check this component documentation to see how to enable it.');
             }
 
