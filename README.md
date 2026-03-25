@@ -1,224 +1,30 @@
-# Response headers component
+# Response Headers
 
-![Latest Stable](https://img.shields.io/packagist/v/softspring/response-headers?label=stable&style=flat-square)
-![Latest Unstable](https://img.shields.io/packagist/v/softspring/response-headers?label=unstable&style=flat-square&include_prereleases)
-![License](https://img.shields.io/packagist/l/softspring/response-headers?style=flat-square)
-![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/response-headers/php?style=flat-square)
-![Downloads](https://img.shields.io/packagist/dt/softspring/response-headers?style=flat-square)
+[![Latest Stable](https://img.shields.io/packagist/v/softspring/response-headers?label=stable&style=flat-square)](https://github.com/softspring/response-headers/releases)
+[![Latest Unstable](https://img.shields.io/packagist/v/softspring/response-headers?label=unstable&style=flat-square&include_prereleases)](https://github.com/softspring/response-headers/releases)
+[![License](https://img.shields.io/packagist/l/softspring/response-headers?style=flat-square)](https://github.com/softspring/response-headers/blob/6.0/LICENSE)
+[![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/response-headers/php?style=flat-square)](https://github.com/softspring/response-headers/blob/6.0/composer.json)
+[![Downloads](https://img.shields.io/packagist/dt/softspring/response-headers?style=flat-square)](https://packagist.org/packages/softspring/response-headers)
 [![CI](https://img.shields.io/github/actions/workflow/status/softspring/response-headers/ci.yml?branch=6.0&style=flat-square&label=CI)](https://github.com/softspring/response-headers/actions/workflows/ci.yml)
-![Coverage](https://raw.githubusercontent.com/softspring/response-headers/6.0/.github/badges/coverage.svg)
+[![Coverage](https://img.shields.io/codecov/c/github/softspring/response-headers?branch=6.0&style=flat-square)](https://codecov.io/gh/softspring/response-headers)
 
-This component, made for Symfony, allows to set response headers defining them in configuration.
+This Symfony component centralizes HTTP response header rules in one listener.
 
-## Installation
+It is useful when your application needs consistent security headers, API headers, or conditional headers without repeating the same logic in controllers.
 
-### Applications that use Symfony Flex
+## Armonic
 
-Open a command console, enter your project directory and execute:
+This package is part of [Armonic](https://softspring.es/en/armonic).
 
-```console
-$ composer require softspring/response-headers
-```
+## Documentation
 
-## Basic configuration
+[Armonic Documentation](https://armonic.softspring.es/latest/components/response-headers)
 
-Create a configuration file:
+## Contributing
 
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        X-Frame-Options: "SAMEORIGIN"
-        X-Content-Type-Options: "nosniff"
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-services:
-    Softspring\Component\ResponseHeaders\EventListener\ResponseHeadersListener:
-        tags: ['kernel.event_subscriber']
-        arguments:
-            $headers: '%response_headers%'
-```
-
-## Use conditions 
-
-You can set some conditions to match before applying response headers.
-
-### Configure services
-
-For this feature expression language component is required:
-
-```console
-$ composer require symfony/expression-language
-```
-
-Then you must configure expression language service:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers_global_conditions: []
-    response_headers:
-        ...
-
-services:
-    softspring.response_headers.expression_language:
-        class: Symfony\Component\ExpressionLanguage\ExpressionLanguage
-        arguments:
-            - '@?Psr\Cache\CacheItemPoolInterface'
-
-    Softspring\Component\ResponseHeaders\EventListener\ResponseHeadersListener:
-        tags: ['kernel.event_subscriber']
-        arguments:
-            $headers: '%response_headers%'
-            $expressionLanguage: '@softspring.response_headers.expression_language'
-            $globalConditions: '%response_headers_global_conditions%'
-```
-
-### Define conditions
-
-Now you can set a condition to be matched before applying a response header:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        X-Frame-Options: 
-            value: "SAMEORIGIN"
-            condition: "request.getPathInfo() matches '^/admin'"
-        Access-Control-Allow-Origin:
-            value: "*"
-            condition: "request.getPathInfo() matches '^/api'"
-```
-
-### Define global conditions
-
-Also you can set global conditions to be matched for every headers:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers_global_conditions:
-        - 'isMainRequest'
-```
-
-This global condition is recommended, to avoid setting headers for sub-requests, but it's not mandatory.
-
-### Build conditions
-
-For the conditions, **request** and **response** objects are available. Also a **isMainRequest** variable is defined.
-
-Check Symfony [expression-language documentation](https://symfony.com/doc/current/components/expression_language/syntax.html).
-
-## Headers configuration reference
-
-There are several ways to define headers:
-
-**Single value header**
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        X-Frame-Options: "SAMEORIGIN" 
-```
-
-This code generates a *x-frame-options: "SAMEORIGIN"* header.
-
-**Multiple value header**
-
-Multiple value headers, will be merged to a single string delimited by semicolons
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        Feature-Policy:
-            - "geolocation 'self'"
-            - "vibrate 'none'" 
-```
-
-This code generates a *feature-policy: "geolocation 'self'; vibrate 'none'"* header.
-
-**Value field**
-
-Also you can define the values into a *value* field:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        X-Frame-Options: 
-            value: "SAMEORIGIN" 
-        Feature-Policy:
-            value:
-                - "geolocation 'self'"
-                - "vibrate 'none'" 
-```
-
-This *value* field is mandatory if you want to set a condition or a replace behaviour.
-
-**Condition**
-
-As said before, headers could be restricted with conditions:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        X-Frame-Options: 
-            value: "SAMEORIGIN"
-            condition: "request.getHost() == 'api.mydomain.com"
-```
-
-**Replace behaviour**
-
-Symfony response allows to define if a header must replace a previous defined header value. 
-
-By default, this replace behaviour is defined as true. But you can disable it using:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers:
-        X-Frame-Options: 
-            value: "SAMEORIGIN"
-            replace: false
-```
-
-## Common security headers
-
-This is an example witch defines common security headers:
-
-```yaml
-# config/packages/response_headers.yaml
-parameters:
-    response_headers_global_conditions:
-        - 'isMainRequest'
-    response_headers:
-        X-XSS-Protection:
-            - "1"
-            - "mode=block"
-        X-Frame-Options: "SAMEORIGIN"
-        X-Content-Type-Options: "nosniff"
-        Strict-Transport-Security:
-            - "max-age=31536000"
-            - "includeSubDomains"
-        Referrer-Policy: "same-origin"
-        Feature-Policy:
-            - "geolocation 'self'"
-            - "vibrate 'none'"
-            # ... include every feature the application uses.
-        Content-Security-Policy:
-            - "default-src 'none'"
-            - "img-src 'self'"
-            - "font-src 'self'"
-            - "manifest-src 'self'"
-            - "frame-src 'self'"
-            - "script-src 'self' 'unsafe-inline'"
-            - "style-src 'self' 'unsafe-inline'"
-            - "connect-src 'self'"
-```
-
-Check Content-Security-Policy to include every base urls with services you use. Also try to avoid *unsafe-inline* configuration, this is up to your project. 
+[Report issues](https://github.com/softspring/response-headers/issues) and [send Pull Requests](https://github.com/softspring/response-headers/pulls)
 
 ## License
 

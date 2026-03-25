@@ -17,7 +17,7 @@ class ResponseHeadersListenerTest extends TestCase
     {
         $request = new Request();
         $response = new Response();
-        $kernel = $this->createMock(HttpKernelInterface::class);
+        $kernel = $this->createStub(HttpKernelInterface::class);
 
         return new ResponseEvent($kernel, $request, $mainRequest ? HttpKernelInterface::MAIN_REQUEST : HttpKernelInterface::SUB_REQUEST, $response);
     }
