@@ -10,9 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 class ResponseHeadersListenerTest extends TestCase
 {
+    public function testSubscribedEvents(): void
+    {
+        self::assertSame([
+            KernelEvents::RESPONSE => 'onKernelResponseAddHeaders',
+        ], ResponseHeadersListener::getSubscribedEvents());
+    }
+
     public function createEvent(bool $mainRequest = true): ResponseEvent
     {
         $request = new Request();
