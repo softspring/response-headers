@@ -18,7 +18,7 @@ This package is part of [Armonic](https://softspring.es/en/armonic).
 
 ## Documentation
 
-[Armonic Documentation](https://armonic.softspring.es/latest/components/response-headers)
+[Armonic Documentation](https://armonic.softspring.es/6.0/components/response-headers)
 
 ## Contributing
 
