@@ -2,11 +2,11 @@
 
 [![Latest Stable](https://img.shields.io/packagist/v/softspring/response-headers?label=stable&style=flat-square)](https://github.com/softspring/response-headers/releases)
 [![Latest Unstable](https://img.shields.io/packagist/v/softspring/response-headers?label=unstable&style=flat-square&include_prereleases)](https://github.com/softspring/response-headers/releases)
-[![License](https://img.shields.io/packagist/l/softspring/response-headers?style=flat-square)](https://github.com/softspring/response-headers/blob/6.0/LICENSE)
-[![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/response-headers/php?style=flat-square)](https://github.com/softspring/response-headers/blob/6.0/composer.json)
+[![License](https://img.shields.io/packagist/l/softspring/response-headers?style=flat-square)](https://github.com/softspring/response-headers/blob/6.1/LICENSE)
+[![PHP Version](https://img.shields.io/packagist/dependency-v/softspring/response-headers/php?style=flat-square)](https://github.com/softspring/response-headers/blob/6.1/composer.json)
 [![Downloads](https://img.shields.io/packagist/dt/softspring/response-headers?style=flat-square)](https://packagist.org/packages/softspring/response-headers)
-[![CI](https://img.shields.io/github/actions/workflow/status/softspring/response-headers/ci.yml?branch=6.0&style=flat-square&label=CI)](https://github.com/softspring/response-headers/actions/workflows/ci.yml)
-[![Coverage](https://img.shields.io/codecov/c/github/softspring/response-headers?branch=6.0&style=flat-square)](https://app.codecov.io/gh/softspring/response-headers/tree/6.0)
+[![CI](https://img.shields.io/github/actions/workflow/status/softspring/response-headers/ci.yml?branch=6.1&style=flat-square&label=CI)](https://github.com/softspring/response-headers/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/codecov/c/github/softspring/response-headers?branch=6.1&style=flat-square)](https://app.codecov.io/gh/softspring/response-headers/tree/6.1)
 
 This Symfony component centralizes HTTP response header rules in one listener.
 
@@ -18,7 +18,7 @@ This package is part of [Armonic](https://softspring.es/en/armonic).
 
 ## Documentation
 
-[Armonic Documentation](https://armonic.softspring.es/6.0/components/response-headers)
+[Armonic Documentation](https://armonic.softspring.es/6.1@dev/components/response-headers)
 
 ## Contributing
 
